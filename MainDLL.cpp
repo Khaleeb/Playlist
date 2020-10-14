@@ -10,4 +10,3 @@ int main() {
 	//Playlist *list = new Playlist;
 	Playlist *list = new Playlist("Halloween.txt");
 }
-
