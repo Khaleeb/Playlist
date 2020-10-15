@@ -75,8 +75,8 @@ using namespace std;
 			if(n->song->title == t){
 				cout << "Removing: ";
 				n->song->printSong();
-				n->prev->next = n->next;
 				n->next->prev = n->prev;
+				first = n->next;
 				delete n;
 				return 0;
 			}
