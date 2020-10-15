@@ -33,14 +33,21 @@ using namespace std;
 	Song *DLL::pop(){
 		if(numSongs == 1){
 			first = NULL;
+			DNode *temp = last;
+			Song *song = temp->song;
+			last = last->prev;
+			delete temp;
+			last = NULL;
+			return song;
+		} else {
+			DNode *temp = last;
+			Song *song = temp->song;
+			last = last->prev;
+			delete temp;
+			last->next = NULL;
+			numSongs--;
+			return song;
 		}
-		DNode *temp = last;
-		Song *song = temp->song;
-		last = last->prev;
-		delete temp;
-		last->next = NULL;
-		numSongs--;
-		return song;
 	}
 
 	void DLL::printList(){
