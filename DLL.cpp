@@ -86,28 +86,52 @@ using namespace std;
 		void DLL::moveUp(string t){
 			if(numSongs == 0){
 				cout << "Nothing to do, list is empty" << endl;
-			} /*else {
+			} else {
 				DNode *n = first;
 				while(n != NULL){
 					if(n->song->title == t){
 						if(n->prev == NULL){
 							// Top of list, move to bottom
+							first = n->next;
+							first->prev = NULL;
+							last->next = n;
+							n->prev = last;
+							last = n;
+							last->next = NULL;
 						} else if (n->prev->prev == NULL){
 							// Second in list, make n first
+							n->prev->next = n->next;
+							n->next->prev = n->prev;
+							n->prev->prev = n;
+							n->next = n->prev;
+							n->prev = NULL;
+							first = n;
 						} else if(n->next == NULL){
 							// Last in list, make n->prev last
+							n->prev->prev->next = n;
+							last = n->prev;
+							n->prev->next = NULL;
+							n->next = n->prev;
+							n->prev = n->next->prev;
+							n->next->prev = n;
 						}	else {
 							// Any other case
+							n->prev->prev->next = n;
+							n->next->prev = n->prev;
+							n->prev->next = n->next;
+							n->next = n->prev;
+							n->prev = n->prev->prev;
+							n->next->prev = n;
 						}
 					}
 				}
-			}*/
+			}
 		}
 
 		void DLL::moveDown(string t){
 			if(numSongs == 0){
 				cout << "Nothing to do, list is empty" << endl;
-			} /*else {
+			} else {
 				DNode *n = first;
 				while(n != NULL){
 					if(n->song->title == t){
@@ -122,7 +146,7 @@ using namespace std;
 						}
 					}
 				}
-			}*/
+			}
 		}
 
 		void DLL::makeRandom(){
