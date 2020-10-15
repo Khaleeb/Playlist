@@ -31,6 +31,9 @@ using namespace std;
 	}
 
 	Song *DLL::pop(){
+		if(numSongs == 1){
+			first = NULL;
+		}
 		DNode *temp = last;
 		Song *song = temp->song;
 		last = last->prev;
@@ -213,11 +216,8 @@ using namespace std;
 		}
 
 		DLL::~DLL(){
-			DNode *n = first;
-			while(numSongs){
-				n = n->next;
-				remove(n->prev->song->title);
-				numSongs--;
+			while(first){
+				cout << "Deleting: " << pop()->title << endl;
 			}
 			first = NULL;
 			last = NULL;
