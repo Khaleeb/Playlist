@@ -86,72 +86,59 @@ using namespace std;
 		void DLL::moveUp(string t){
 			if(numSongs == 0){
 				cout << "Nothing to do, list is empty" << endl;
-			} else {
+			} /*else {
 				DNode *n = first;
-				int c = 1;
-				if(n->song->title == t){
-					first = n->next;
-					first->prev = NULL;
-					last->next = n;
-					n->prev = last;
-					last = n;
-					last->next = NULL;
-					c = !c;
-				}
-				while (n->next != NULL && c) {
-					n = n->next;
+				while(n != NULL){
 					if(n->song->title == t){
-						if(n->prev->prev == NULL){
-							first->next = n->next;
-							first->prev = n;
-							n->next = first;
-							n->prev = NULL;
-							first = n;
-						} else {
-							DNode *temp = n->prev;
-							n->prev->next = n->next;
-							n->prev->prev = n;
-							n->next = n->prev;
-							n->prev = temp->prev;
-							delete temp;
+						if(n->prev == NULL){
+							// Top of list, move to bottom
+						} else if (n->prev->prev == NULL){
+							// Second in list, make n first
+						} else if(n->next == NULL){
+							// Last in list, make n->prev last
+						}	else {
+							// Any other case
 						}
 					}
-					c = !c;
 				}
-			}
+			}*/
 		}
 
 		void DLL::moveDown(string t){
 			if(numSongs == 0){
 				cout << "Nothing to do, list is empty" << endl;
-			} else {
+			} /*else {
 				DNode *n = first;
-				int c = 1;
-				if(n->song->title == t){
-					n->next = n->next->next;
-					n->prev = n->next;
-					first = n->next;
-					first->prev = NULL;
-					first->next = n;
-					c = !c;
-				}
-				while (n->next != NULL && c) {
-					n = n->next;
+				while(n != NULL){
 					if(n->song->title == t){
-						if(n->next->next == NULL){
-
-						} else if(n->next == NULL){
-
-						} else {
-							DNode *temp = n->next;
-							n->next->next = n;
-							n->next->prev = n->prev;
-							n->next = temp->next;
-							n->prev = n->next;
-
+						if(n->prev == NULL){
+							// Top of list, make n->next last
+						} else if (n->next == NULL){
+							// Last in list, move to top
+						} else if(n->next->next == NULL){
+							// Second to last in list, make n last
+						}	else {
+							// Any other case
 						}
 					}
-					c = !c;
+				}
+			}*/
+		}
+
+		void DLL::makeRandom(){
+
+		}
+
+		void DLL::listDuration(int *tm, int *ts){
+			if(numSongs == 0){
+				*tm = 0;
+				*ts = 0;
+			} else {
+				DNode *n = first;
+				while (n != NULL){
+					*tm += n->song->min;
+					*ts += n->song->sec;
+					n = n->next;
 				}
 			}
 		}
