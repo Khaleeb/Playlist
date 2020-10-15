@@ -103,6 +103,7 @@ using namespace std;
 							break;
 						} else if (n->prev->prev == NULL){
 							// Second in list, make n first
+							cout << "Second Case" << endl;
 							n->prev->next = n->next;
 							n->next->prev = n->prev;
 							n->prev->prev = n;
@@ -112,6 +113,7 @@ using namespace std;
 							break;
 						} else if(n->next == NULL){
 							// Last in list, make n->prev last
+							cout << "Third Case" << endl;
 							n->prev->prev->next = n;
 							last = n->prev;
 							n->prev->next = NULL;
@@ -121,6 +123,7 @@ using namespace std;
 							break;
 						}	else {
 							// Any other case
+							cout << "Default Case" << endl;
 							n->prev->prev->next = n;
 							n->next->prev = n->prev;
 							n->prev->next = n->next;
