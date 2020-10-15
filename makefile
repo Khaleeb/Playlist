@@ -1,5 +1,5 @@
 Playlist: MainDLL.o DLL.o DNode.o Playlist.o Song.o
-	g++ MainDLL.o -o Playlist
+	g++ MainDLL.o DLL.o DNode.o Playlist.o Song.o -o Playlist
 
 MainDLL.o: MainDLL.cpp
 	g++ -c MainDLL.cpp
