@@ -20,9 +20,14 @@ using namespace std;
 
 	void DLL::push(string t, string a, int m ,int s){
 		DNode *n = new DNode(t,a,m,s);
-		*n->prev = *last;
-		*n->prev->next = *n;
+		if(numSongs == 0){
+			first = n;
+		} else {
+			n->prev = last;
+			n->prev->next = n;
+		}
 		last = n;
+		numSongs++;
 	}
 
 	Song *DLL::pop(){
@@ -78,17 +83,75 @@ using namespace std;
 			return -1;
 		}
 
-		/*void DLL::moveUp(string t){
+		void DLL::moveUp(string t){
 			if(numSongs == 0){
-				cout << "Failed: List is Empty" << endl;
+				cout << "Nothing to do, list is empty" << endl;
 			} else {
 				DNode *n = first;
-				if
-				while (n->next != NULL) {
+				int c = 1;
+				if(n->song->title == t){
+					first = n->next;
+					first->prev = NULL;
+					last->next = n;
+					n->prev = last;
+					last = n;
+					last->next = NULL;
+					c = !c;
+				}
+				while (n->next != NULL && c) {
+					n = n->next;
+					if(n->song->title == t){
+						if(n->prev->prev == NULL){
+							first->next = n->next;
+							first->prev = n;
+							n->next = first;
+							n->prev = NULL;
+							first = n;
+						} else {
+							DNode *temp = n->prev;
+							n->prev->next = n->next;
+							n->prev->prev = n;
+							n->next = n->prev;
+							n->prev = temp->prev;
+							delete temp;
+						}
+					}
+					c = !c;
+				}
+			}
+		}
 
-				}*/
+		void DLL::moveDown(string t){
+			if(numSongs == 0){
+				cout << "Nothing to do, list is empty" << endl;
+			} else {
+				DNode *n = first;
+				int c = 1;
+				if(n->song->title == t){
+					n->next = n->next->next;
+					n->prev = n->next;
+					first = n->next;
+					first->prev = NULL;
+					first->next = n;
+					c = !c;
+				}
+				while (n->next != NULL && c) {
+					n = n->next;
+					if(n->song->title == t){
+						if(n->next->next == NULL){
 
+						} else if(n->next == NULL){
 
+						} else {
+							DNode *temp = n->next;
+							n->next->next = n;
+							n->next->prev = n->prev;
+							n->next = temp->next;
+							n->prev = n->next;
 
+						}
+					}
+					c = !c;
+				}
 			}
 		}
