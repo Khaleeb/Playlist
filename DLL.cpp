@@ -171,7 +171,7 @@ using namespace std;
 							n->next = n->next->next;
 							n->prev = n->next->prev;
 							n->next->prev->next = n;
-							n->next->prev = n; 
+							n->next->prev = n;
 						}
 					}
 					n = n->next;
@@ -180,6 +180,15 @@ using namespace std;
 		}
 
 		void DLL::makeRandom(){
+			// PSUEDORANDOM shuffle
+			for(int i = 0; i < 2*numSongs; i++){
+				int numMoves = rand() % numSongs + 1;
+				int c = 0;
+				while(c < numMoves){
+					moveDown(first->song->title);
+					c++;
+				}
+			}
 
 		}
 
