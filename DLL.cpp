@@ -142,3 +142,14 @@ using namespace std;
 				}
 			}
 		}
+
+		DLL::~DLL(){
+			DNode *n = first;
+			while(numSongs){
+				n = n->next;
+				delete n->prev;
+				numSongs--;
+			}
+			first = NULL;
+			last = NULL;
+		}
