@@ -141,13 +141,37 @@ using namespace std;
 				while(n != NULL){
 					if(n->song->title == t){
 						if(n->prev == NULL){
-							// Top of list, make n->next last
+							// Top of list, make n->next first
+							n->next->next->prev = n;
+							first = n->next;
+							first->prev = NULL;
+							n->next = first->next;
+							first->next = n;
+							n->prev = first;
 						} else if (n->next == NULL){
 							// Last in list, move to top
+							first->prev = n;
+							n->next = first;
+							first = n;
+							last = n->prev;
+							last->next = NULL;
+							n->prev = NULL;
 						} else if(n->next->next == NULL){
 							// Second to last in list, make n last
+							n->prev->next = n->next;
+							n->next->prev = n->prev;
+							n->next->next = n;
+							n->prev = n->next;
+							last = n;
+							n->next = NULL;
 						}	else {
 							// Any other case
+							n->prev->next = n->next;
+							n->next->prev = n->prev;
+							n->next = n->next->next;
+							n->prev = n->next->prev;
+							n->next->prev->next = n;
+							n->next->prev = n; 
 						}
 					}
 					n = n->next;
