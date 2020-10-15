@@ -185,11 +185,11 @@ using namespace std;
 			int c;
 			Song *s;
 			for(int i = 0; i < 2*numSongs; i++){
-				numMoves = rand() % 2*numSongs + 1;
+				numMoves = rand() % (2*numSongs) + 1;
 				c = 0;
 				s = first->song;
 				while(c < numMoves){
-					moveDown(s->title);
+					DLL::moveDown(s->title);
 					c++;
 				}
 			}
