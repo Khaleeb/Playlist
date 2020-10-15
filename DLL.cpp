@@ -181,17 +181,15 @@ using namespace std;
 
 		void DLL::makeRandom(){
 			// PSUEDORANDOM shuffle
-			cout << "Running Random" << endl;
 			int numMoves;
 			int c;
 			Song *s;
 			for(int i = 0; i < 2*numSongs; i++){
-				numMoves = rand() % numSongs + 1;
-				cout << "numMoves: " << numMoves << endl;
+				numMoves = rand() % 2*numSongs + 1;
 				c = 0;
 				s = first->song;
 				while(c < numMoves){
-					DLL::moveDown(s->title);
+					moveDown(s->title);
 					c++;
 				}
 			}
