@@ -183,15 +183,15 @@ using namespace std;
 			// PSUEDORANDOM shuffle
 			int numMoves;
 			int c;
-			Song *s;
+			DNode *n = first;
 			for(int i = 0; i < 2*numSongs; i++){
 				numMoves = rand() % (2*numSongs) + 1;
 				c = 0;
-				s = first->song;
 				while(c < numMoves){
-					DLL::moveDown(s->title);
+					DLL::moveDown(n->song->title);
 					c++;
 				}
+				n = n->next; 
 			}
 
 		}
