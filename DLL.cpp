@@ -184,12 +184,14 @@ using namespace std;
 			cout << "Running Random" << endl;
 			int numMoves;
 			int c;
+			Song *s;
 			for(int i = 0; i < 2*numSongs; i++){
 				numMoves = rand() % numSongs + 1;
-				cout << "numMoves: %d" << numMoves << endl;
+				cout << "numMoves: " << numMoves << endl;
 				c = 0;
+				s = first->song;
 				while(c < numMoves){
-					moveDown(first->song->title);
+					DLL::moveDown(s->title);
 					c++;
 				}
 			}
