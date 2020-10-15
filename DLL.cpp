@@ -67,6 +67,7 @@ using namespace std;
 				n->song->printSong();
 				n->prev->next = n->next;
 				n->next->prev = n->prev;
+				delete n;
 				return 0;
 			}
 			while(n->next != NULL){
@@ -76,6 +77,7 @@ using namespace std;
 					n->song->printSong();
 					n->prev->next = n->next;
 					n->next->prev = n->prev;
+					delete n;
 					return 0;
 				}
 			}
@@ -214,7 +216,7 @@ using namespace std;
 			DNode *n = first;
 			while(numSongs){
 				n = n->next;
-				delete n->prev;
+				remove(n->prev->song->title);
 				numSongs--;
 			}
 			first = NULL;
