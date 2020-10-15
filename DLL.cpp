@@ -133,6 +133,7 @@ using namespace std;
 							break;
 						}
 					}
+					n = n->next;
 				}
 			}
 		}
