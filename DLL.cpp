@@ -90,14 +90,17 @@ using namespace std;
 				DNode *n = first;
 				while(n != NULL){
 					if(n->song->title == t){
+						cout << "Found song" << endl;
 						if(n->prev == NULL){
 							// Top of list, move to bottom
+							cout << "First Case" << endl;
 							first = n->next;
 							first->prev = NULL;
 							last->next = n;
 							n->prev = last;
 							last = n;
 							last->next = NULL;
+							break;
 						} else if (n->prev->prev == NULL){
 							// Second in list, make n first
 							n->prev->next = n->next;
@@ -106,6 +109,7 @@ using namespace std;
 							n->next = n->prev;
 							n->prev = NULL;
 							first = n;
+							break;
 						} else if(n->next == NULL){
 							// Last in list, make n->prev last
 							n->prev->prev->next = n;
@@ -114,6 +118,7 @@ using namespace std;
 							n->next = n->prev;
 							n->prev = n->next->prev;
 							n->next->prev = n;
+							break;
 						}	else {
 							// Any other case
 							n->prev->prev->next = n;
@@ -122,6 +127,7 @@ using namespace std;
 							n->next = n->prev;
 							n->prev = n->prev->prev;
 							n->next->prev = n;
+							break;
 						}
 					}
 				}
